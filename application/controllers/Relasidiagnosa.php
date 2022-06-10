@@ -16,8 +16,6 @@ class Relasidiagnosa extends CI_Controller
         $data['penyakit'] = $this->db->get('penyakit')->result_array();
         $data['gejala'] = $this->db->get('gejala')->result_array();
         $data['solusi'] = $this->db->get('solusi')->result_array();
-        $data['obat'] = $this->db->get('jenis_obat')->result_array();
-        $data['keterangan'] = $this->db->get('keterangan')->result_array();
         $data['relasidiagnosa'] = $this->menumenu->relasi_diagnosa()->result_array();
         if ($this->form_validation->run() == false) {
             $this->load->view('templateadmin/header_admin', $data);
@@ -65,28 +63,3 @@ class Relasidiagnosa extends CI_Controller
         }
     }
 }
-    
-
-
-
-
-
-//         function gejala_pasien1()
-//         {
-//             if ($this->input->post('ppenyakit_id')) {
-//                 echo $this->menumenu->gejala_pasien1($this->input->post('ppenyakit_id'));
-//             }
-//         }
-
-//         function solusi_pasien1()
-//         {
-//             if ($this->input->post('ggejala_id')) {
-//                 echo $this->menumenu->solusi_pasien1($this->input->post('ggejala_id'));
-//             }
-//         }
-//         function obat_pasien1()
-//         {
-//             if ($this->input->post('ggejala_id')) {
-//                 echo $this->menumenu->solusi_pasien1($this->input->post('ggejala_id'));
-//             }
-// }

@@ -79,7 +79,7 @@
                                  Data Ini Hanya Dapat Mengubah Username Anda Saja.</p>
                              <form action="<?= base_url('user/edit'); ?>" method="POST">
                                  <div class="form-group">
-                                     <h6 class="text-muted fw-400">Email User</h6>
+                                     <h6 class="text-muted fw-400">Email <?= ucfirst($this->fungsi->user_login()->level) ?></h6>
                                      <div>
                                          <div class="input-group">
                                              <input type="hidden" class="form-control" name="id" value="<?= ucfirst($this->fungsi->user_login()->id) ?>">
@@ -90,7 +90,7 @@
                                      </div>
                                  </div>
                                  <div class="form-group">
-                                     <h6 class="text-muted fw-400">Nama User</h6>
+                                     <h6 class="text-muted fw-400">Nama <?= ucfirst($this->fungsi->user_login()->level) ?></h6>
                                      <div>
                                          <div class="input-group">
                                              <input type="text" class="form-control" placeholder="Username" name="username" value="<?= ucfirst($this->fungsi->user_login()->username) ?>" readonly>
@@ -100,7 +100,7 @@
                                      </div>
                                  </div>
                                  <div class="form-group">
-                                     <h6 class="text-muted fw-400">Status User</h6>
+                                     <h6 class="text-muted fw-400">Status <?= ucfirst($this->fungsi->user_login()->level) ?></h6>
                                      <div>
                                          <div class="input-group">
                                              <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-dark">
@@ -112,7 +112,7 @@
                                      </div>
                                  </div>
                                  <div class="form-group">
-                                     <h6 class="text-muted fw-400">Password User</h6>
+                                     <h6 class="text-muted fw-400">Password <?= ucfirst($this->fungsi->user_login()->level) ?></h6>
                                      <div>
                                          <div class="input-group">
                                              <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-dark">
@@ -124,7 +124,7 @@
                                      </div>
                                  </div>
                                  <div class="form-group">
-                                     <h6 class="text-muted fw-400">Picture User</h6>
+                                     <h6 class="text-muted fw-400">Picture <?= ucfirst($this->fungsi->user_login()->level) ?></h6>
                                      <div class="col-sm-12">
                                          <div class="row">
                                              <div class="col-sm-6">

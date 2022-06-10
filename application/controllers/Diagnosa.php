@@ -33,8 +33,6 @@ class Diagnosa extends CI_Controller
         $data['title'] = 'Data Diagnosa Pasien';
         $data['gejala'] = $this->db->get('gejala')->result_array();
         $data['solusi'] = $this->db->get('solusi')->result_array();
-        $data['kabupaten2'] = $this->modelmodel->kabupaten_pasien();
-        $data['kabupaten1'] = $this->db->get('kabupaten')->result_array();
 
 
         if ($this->form_validation->run() == false) {
@@ -43,49 +41,6 @@ class Diagnosa extends CI_Controller
             $this->load->view('templateadmin/sidebar_admin');
             $this->load->view('templateadmin/footer_admin');
         } else {
-        }
-    }
-    function kecamatan_pasien()
-    {
-        if ($this->input->post('kabupaten_id')) {
-            echo $this->modelmodel->kecamatan_pasien($this->input->post('kabupaten_id'));
-        }
-    }
-
-    function kelurahan_pasien()
-    {
-        if ($this->input->post('kecamatan_id')) {
-            echo $this->modelmodel->kelurahan_pasien($this->input->post('kecamatan_id'));
-        }
-    }
-    function rumahsakit_pasien()
-    {
-        if ($this->input->post('kelurahan_id')) {
-            echo $this->modelmodel->rumahsakit_pasien($this->input->post('kelurahan_id'));
-        }
-    }
-    function dokter_pasien()
-    {
-        if ($this->input->post('rumahsakit_id')) {
-            echo $this->modelmodel->dokter_pasien($this->input->post('rumahsakit_id'));
-        }
-    }
-    function konsultasi()
-    {
-        if ($this->input->post('dokter_id')) {
-            echo $this->modelmodel->konsultasi($this->input->post('dokter_id'));
-        }
-    }
-    function penyakit()
-    {
-        if ($this->input->post('konsultasi_id')) {
-            echo $this->modelmodel->penyakit($this->input->post('konsultasi_id'));
-        }
-    }
-    function obat()
-    {
-        if ($this->input->post('penyakit_id[]')) {
-            echo $this->modelmodel->obat($this->input->post('penyakit_id[]'));
         }
     }
 }

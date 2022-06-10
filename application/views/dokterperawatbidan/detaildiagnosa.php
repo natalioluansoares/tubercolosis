@@ -1,4 +1,3 @@
-kecamatan
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -45,45 +44,37 @@ kecamatan
                     <p class="text-muted m-b-30 font-14 text-center" style="font-family:Times New Roman">
                         Data Ini Hanya Digunakan Untuk Download Data Diagnosa Pendaftaran Pasien</p>
                     <div class="card-body">
-                        <div class="table-responsive b-0">
+                        <div class="table-responsive">
                             <table class="table table-bordered table-striped" id="datatable">
                                 <thead class="table-primary">
                                     <tr>
-                                        <th>Kode Pasien</th>
+                                        <th>#</th>
                                         <th>Nama Pasien</th>
-                                        <th>No Eleitoral</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Umur</th>
-                                        <th>ALamat</th>
-                                        <td>Bulan Pendaftaran</td>
+                                        <th>Level User</th>
+                                        <th>Nama Penyakit</th>
+                                        <th style="width: 35%;">Isi Solusi</th>
+                                        <th>Tanggal Diagnosa</th>
                                         <th><i class="fa fa-gear (alias)"></i></th>
                                     </tr>
                                 </thead>
-                                <?php foreach ($details as $Dt) : ?>
+                                <?php $no = 1;
+                                foreach ($details as $Dt) : ?>
                                     <tbody>
                                         <tr>
-                                            <td><?= $Dt['kodepasien']; ?></td>
-                                            <td><?= $Dt['namapasien']; ?></td>
-                                            <td><?= $Dt['nomor_KTP']; ?></td>
-                                            <td><?= $Dt['jenis_kelamin']; ?></td>
-                                            <td><?= $Dt['umurpasien']; ?></td>
-                                            <td><?= $Dt['alamatpasien']; ?></td>
-                                            <td><?= date('d,F,Y', $Dt['tgl_diagnosa']); ?></td>
-                                            <td><a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default text-center" readonly><i class="fa fa-download"></i></a></td>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $Dt['nama_user']; ?></td>
+                                            <td><?= $Dt['user_level']; ?></td>
+                                            <td><?= $Dt['nama_penyakit']; ?></td>
+                                            <td><?= $Dt['isi_solusi']; ?></td>
+                                            <td><?= $Dt['tanggal_diagnosa']; ?></td>
+                                            <td a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default form-control" readonly><i class="fa fa-download"></i></a></td>
                                         </tr>
                                     </tbody>
                                 <?php endforeach; ?>
                             </table>
-                            <?php if (empty($details)) : ?>
-                                <div class="badge bg-danger">
-                                    <span class="text-center"><i class="fa fa-info-circle"></i>
-                                        Data Yang Dicari Oleh Anda Harus Sesuai Kecamatan!,
-                                        Jika Data Dicari Tidak Mendapat Karena Kecamatan Anda Masih Salah....Semoga Anda Berhasil!</span>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>

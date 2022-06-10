@@ -10,8 +10,6 @@ class relasi_D extends CI_Model
         $this->db->join('gejala', 'relasi_diagnosa.gejala_id = gejala.id', 'nama_gejala', 'LEFT');
         $this->db->join('penyakit', 'relasi_diagnosa.penyakit_id = penyakit.id', 'nama_penyakit', 'LEFT');
         $this->db->join('solusi', 'relasi_diagnosa.solusi_id = solusi.id', 'isi_solusi', 'LEFT');
-        $this->db->join('jenis_obat', 'relasi_diagnosa.obat_id = jenis_obat.id', 'nama_obat', 'LEFT');
-        $this->db->join('keterangan', 'relasi_diagnosa.keterangan_id = keterangan.id', 'keterangan', 'LEFT');
         $query = $this->db->get();
         return $query;
     }
@@ -26,9 +24,7 @@ class relasi_D extends CI_Model
         $data = [
             'gejala_id' => $gejala,
             'penyakit_id' => $penyakit,
-            'solusi_id' => $solusi,
-            'obat_id' => $obat,
-            'keterangan_id' => $keterangan
+            'solusi_id' => $solusi
         ];
         $this->db->insert('relasi_diagnosa', $data);
     }
@@ -45,9 +41,7 @@ class relasi_D extends CI_Model
             'id_relasi' => $id,
             'gejala_id' => $gejala,
             'penyakit_id' => $penyakit,
-            'solusi_id' => $solusi,
-            'obat_id' => $obat,
-            'keterangan_id' => $keterangan
+            'solusi_id' => $solusi
         ];
         $this->db->where('id_relasi', $id);
         $this->db->update('relasi_diagnosa', $data);

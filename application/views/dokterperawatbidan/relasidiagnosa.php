@@ -51,9 +51,7 @@
                                         <th>Company</th>
                                         <th data-priority="1" style="width: 10%;">Nama Gejala</th>
                                         <th data-priority="1" style="width: 10%;">Nama Penyakit</th>
-                                        <th data-priority="1" style="width: 30%;">Solusi Penyakit</th>
-                                        <th data-priority="1" style="width: 10%;">Obat TBC</th>
-                                        <th data-priority="1" style="width: 20%;">Keterangan</th>
+                                        <th data-priority="1" style="width: 50%;">Solusi Penyakit</th>
                                         <th data-priority="1" class="text-center"><i class="fa fa-cog "></i></th>
                                     </tr>
                                 </thead>
@@ -65,10 +63,8 @@
                                             <td><?= $rs['nama_gejala']; ?></td>
                                             <td><?= $rs['nama_penyakit']; ?></td>
                                             <td><?= $rs['isi_solusi']; ?></td>
-                                            <td><?= $rs['nama_obat']; ?></td>
-                                            <td><?= $rs['keterangan']; ?></td>
                                             <td class="text-center">
-                                                <a href="" class="tabledit-delete-button btn btn-sm btn-success btn-animation mb-2" title="Update Data Gejala" data-toggle="modal" data-animation="rubberBand" data-target=".updaterelasi" id="modelrelasi" data-relasi="<?= $rs['id_relasi']; ?>" data-natalio="<?= $rs['gejala_id']; ?>" data-penyakit="<?= $rs['penyakit_id']; ?>" data-namasolu="<?= $rs['solusi_id']; ?>" data-idobat="<?= $rs['obat_id']; ?>" data-idketerangan="<?= $rs['keterangan_id']; ?>">
+                                                <a href="" class="tabledit-delete-button btn btn-sm btn-success btn-animation mb-2" title="Update Data Gejala" data-toggle="modal" data-animation="rubberBand" data-target=".updaterelasi" id="modelrelasi" data-relasi="<?= $rs['id_relasi']; ?>" data-natalio="<?= $rs['gejala_id']; ?>" data-penyakit="<?= $rs['penyakit_id']; ?>" data-namasolu="<?= $rs['solusi_id']; ?>">
                                                     <i class="ti-pencil"></i></a>
 
                                                 <a href="" class="tabledit-delete-button btn btn-sm btn-danger mb-2" title="Delete Data Konsultasi">
@@ -121,24 +117,6 @@
                                     <!-- <textarea name="solusi" id="solusisolusi" cols="30" rows="5" class="form-control natosolusi"></textarea> -->
                                     <select name="solusi" id="solusisolusi" class="form-control" style="width: 10%;">
                                         <option value="" style="width: 10%;">Select Solusi</option>
-                                    </select>
-                                    <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
-                                            <i class="fa fa-pencil-square-o"></i></span></div>
-                                </div><br>
-                                <label for="namagejala">Obat</label>
-                                <div class="input-group">
-                                    <!-- <textarea name="solusi" id="solusisolusi" cols="30" rows="5" class="form-control natosolusi"></textarea> -->
-                                    <select name="obat" id="obatobat" class="form-control" style="width: 10%;">
-                                        <option value="">Select Obat</option>
-                                    </select>
-                                    <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
-                                            <i class="fa fa-pencil-square-o"></i></span></div>
-                                </div><br>
-                                <label for="namagejala">Keterangan</label>
-                                <div class="input-group">
-                                    <!-- <textarea name="solusi" id="solusisolusi" cols="30" rows="5" class="form-control natosolusi"></textarea> -->
-                                    <select name="keterangan" id="keteranganketerangan" class="form-control" style="width: 10%;">
-                                        <option value="">Select Keterangan</option>
                                     </select>
                                     <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                             <i class="fa fa-pencil-square-o"></i></span></div>
@@ -200,28 +178,8 @@
                                 </select>
                                 <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                         <i class="fa fa-pencil-square-o"></i></span></div>
-                            </div><br>
-                            <label for="namagejala">Obat</label>
-                            <div class="input-group">
-                                <select name="obat" id="obat" class="form-control" style="width: 10%;">
-                                    <?php foreach ($obat as $gjl) : ?>
-                                        <option value="<?= $gjl['id']; ?>"><?= $gjl['nama_obat']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
-                                        <i class="fa fa-pencil-square-o"></i></span></div>
-                            </div><br>
-                            <label for="namagejala">Keterangan</label>
-                            <div class="input-group">
-                                <select name="keterangan" id="kete" class="form-control" style="width: 10%;">
-                                    <?php foreach ($keterangan as $gjl) : ?>
-                                        <option value="<?= $gjl['id']; ?>"><?= substr($gjl['keterangan'], 0, 53); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
-                                        <i class="fa fa-pencil-square-o"></i></span></div>
-                            </div><br>
-                        </div>
+                            </div>
+                        </div><br>
                         <div class="modal-footer">
                             <button type="sumbit" class="btn btn-danger" data-dismiss="modal" title="Click Untuk Kembali Tabel Konsultasi"><i class="fa fa-refresh"></i></button>
                             <button type="submit" class="btn btn-success" title="Click Untuk Update Data Konsultasi"><i class="fa fa-send (alias)"></i></button>
@@ -241,13 +199,11 @@
                 var Natalio = $(this).data('natalio');
                 var Penyakit = $(this).data('penyakit');
                 var Solusi = $(this).data('namasolu');
-                var Idobat = $(this).data('idobat');
 
                 $(".updaterelasi #idrelasi").val(Relasi);
                 $(".updaterelasi .idgejala").val(Natalio);
                 $(".updaterelasi #penya").val(Penyakit);
                 $(".updaterelasi #solusi").val(Solusi);
-                $(".updaterelasi #obat").val(Idobat);
                 // CKEDITOR.instances['solu'].setData(solu);
             })
 

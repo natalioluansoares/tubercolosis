@@ -13,8 +13,7 @@ class Dashboard extends CI_Controller
     {
 
         $data['title'] = 'Dashboard';
-        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
-        $data['sumpenduduk'] = $this->model->sum_kecamatan();
+        // $data['sumpenduduk'] = $this->model->sum_kecamatan();
         if ($this->form_validation->run() == false) {
             $this->load->view('templateadmin/header_admin', $data);
             $this->load->view('dashboard/index', $data);

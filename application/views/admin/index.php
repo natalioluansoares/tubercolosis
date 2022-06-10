@@ -36,52 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="flash" data-flas1="<?php echo $this->session->flashdata('success'); ?>"></div>
-            <div class="col-12">
-                <div class="card m-b-30">
-                    <div class="card-body" style="background-color: rgb(241, 233, 233); color: black">
-                        <h4 class="mt-2 text-center" style="font-family:Bodoni MT Black"><?= $title; ?></h4>
-                        <h3 class="text-muted m-b-30 font-18 text-center" style="font-family:Times New Roman">
-                            Data Ini Hanya Digunakan Untuk Download Data Diagnosa Pendaftaran Pasien</h3>
-                        <div class="card-header bg-primary text-white">Input Data Pendaftaran Pasien</div>
-                        <div class="card-body">
-                            <form class="form-inline">
-                                <div class="col-lg-5">
-                                    <div class="input-group mt-2">
-                                        <label class="mr-2">Kecamatan:</label>
-                                        <select name="kecamatan" id="" class="form-control">
-                                            <option value="">Pilih Kecamatan</option>
 
-                                            <option value="<?= ucfirst($this->fungsi->user_login()->userkecamatan) ?>">
-                                                <?= ucfirst($this->fungsi->user_login()->userkecamatan) ?></option>
-
-                                        </select>
-                                        <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-default">
-                                                <i class="fa fa-user"></i></span></div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary ml-3 mt-2" title="Tampilkan Data Pasien"><i class="fa fa-fw fa-eye"></i>Generate</button>
-                            </form>
-                        </div>
-                        <?php
-                        if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
-
-                            $kecamatan = $_GET['kecamatan'];
-                            $posto = $kecamatan;
-                        } else {
-
-                            $kecamatan = ('Masukan Kecamatan Anda');
-                            $posto = $kecamatan;
-                        }
-                        ?>
-                        <div class="alert alert-info">Menampilkan Data Pendaftaran Kecamatan Pasien:
-                            <span class="font-weight-bold "><?php echo $kecamatan  ?></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="flash" data-flas1="<?php echo $this->session->flashdata('success'); ?>"></div>
             <div class="col-sm-12">
@@ -108,14 +63,15 @@
                                                 <td><?= $res['first_name']; ?></td>
                                                 <td><?= $res['last_name']; ?></td>
                                                 <td><a href="" title="Click Di Sini Untuk Update Password Anda" data-toggle="modal" data-target=".updatepassword" id="ubahuser" class="btn-animation" data-animation="zoomInRight" data-id="<?= $res['id']; ?>"><?= $res['username']; ?></a></td>
-                                                <td><?= $res['userkecamatan']; ?></td>
+                                                <td><?= $res['alamat']; ?></td>
 
                                                 <td class="text-center">
-                                                    <a href="" class="tabledit-delete-button btn btn-sm btn-info" title="Add Data User" data-toggle="modal" data-target="#addregister">
-                                                        <i class="fa fa-save"></i></a>
 
                                                     <a href="<?= base_url('admin/editregister/' . $res['id']); ?>" class="tabledit-delete-button btn btn-sm btn-success" title="Update Data User">
                                                         <i class="ti-pencil"></i></a>
+
+                                                    <a href="<?= base_url('admin/addregister'); ?>" class="tabledit-delete-button btn btn-sm btn-info" title="Update Data User">
+                                                        <i class="fa fa-save"></i></a>
 
                                                     <a href="" class="tabledit-delete-button btn btn-sm btn-danger btn-animation" title="Delete Data User"><i class="ti-trash"></i></a>
 
@@ -131,13 +87,6 @@
                             </div>
                         </div> <!-- end col -->
                     </div>
-                    <?php if (empty($nato)) : ?>
-                        <div class="badge bg-danger">
-                            <span class="text-center"><i class="fa fa-info-circle"></i>
-                                Data Yang Dicari Oleh Anda Harus Sesuai Kecamatan!,
-                                Jika Data Dicari Tidak Mendapat Karena Kecamatan Anda Masih Salah....Semoga Anda Berhasil!</span>
-                        </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>

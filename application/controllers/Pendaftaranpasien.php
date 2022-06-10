@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pendaftaranpasien extends CI_Controller
+class Pendaftaranpasi extends CI_Controller
 {
     public function __construct()
     {
@@ -16,7 +16,7 @@ class Pendaftaranpasien extends CI_Controller
     public function index()
     {
 
-        $data['title'] = 'Data Pendaftaran Pasien';
+        $data['title'] = 'Data Pendaftaran';
         $this->form_validation->set_rules('kodepasien', 'Masukan Kode Pasien', 'required');
         $this->form_validation->set_rules('tanggaldiagnosa', 'Masukan Nama Tanggal Diagnosa', 'required');
         $this->form_validation->set_rules('namapasien', 'Masukan Nama Pasien', 'required');
@@ -24,8 +24,6 @@ class Pendaftaranpasien extends CI_Controller
         $this->form_validation->set_rules('umurpasien', 'Masukan Umur Pasien', 'required');
         $this->form_validation->set_rules('tanggallahirpasien', 'Masukan Tanggal Lahir Pasien', 'required');
         $this->form_validation->set_rules('alamatpasien', 'Masukan Alamat Pasien', 'required');
-
-        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templateadmin/header_admin', $data);
@@ -86,92 +84,7 @@ class Pendaftaranpasien extends CI_Controller
         }
     }
 
-    public function sendemail()
-    {
-        $data['title'] = 'Kirim Email Kepada Dokter';
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templateadmin/header_admin', $data);
-            $this->load->view('pendafataranpasien/sendemail', $data);
-            $this->load->view('templateadmin/sidebar_admin');
-            $this->load->view('templateadmin/footer_admin');
-        } else {
-            // $this->send();
-        }
-    }
-    // public function send()
-    // {
-    //     $subject = 'Application for Programmer Registration By - ' . $this->input->post("name");
-    //     $programming_languages = implode(", ", $this->input->post("programming_languages"));
-    //     $file_data = $this->upload_file();
-    //     if (is_array($file_data)) {
-    //         $message = '
-    //             <h3 align="center">Programmer Details</h3>
-    //                 <table border="1" width="100%" cellpadding="5">
-    //                 <tr>
-    //                 <td width="30%">Name</td>
-    //                 <td width="70%">' . $this->input->post("name") . '</td>
-    //                 </tr>
-    //                 <tr>
-    //                 <td width="30%">Address</td>
-    //                 <td width="70%">' . $this->input->post("address") . '</td>
-    //                 </tr>
-    //                 <tr>
-    //                 <td width="30%">Email Address</td>
-    //                 <td width="70%">' . $this->input->post("email") . '</td>
-    //                 </tr>
-    //                 <tr>
-    //                 <td width="30%">Progamming Language Knowledge</td>
-    //                 <td width="70%">' . $programming_languages . '</td>
-    //                 </tr>
-    //                 <tr>
-    //                 <td width="30%">Experience Year</td>
-    //                 <td width="70%">' . $this->input->post("experience") . '</td>
-    //                 </tr>
-    //                 <tr>
-    //                 <td width="30%">Phone Number</td>
-    //                 <td width="70%">' . $this->input->post("mobile") . '</td>
-    //                 </tr>
-    //                 <tr>
-    //                 <td width="30%">Additional Information</td>
-    //                 <td width="70%">' . $this->input->post("additional_information") . '</td>
-    //                 </tr>
-    //                 </table>
-    //             ';
 
-    //         $config = array(
-    //             'protocol'  => 'smtp',
-    //             'smtp_host' => 'smtpout.secureserver.net',
-    //             'smtp_port' => 80,
-    //             'smtp_user' => 'xxxxxxxxxx',
-    //             'smtp_pass' => 'xxxxxxxxxx',
-    //             'mailtype'  => 'html',
-    //             'charset'  => 'iso-8859-1',
-    //             'wordwrap'  => TRUE
-    //         );
-    //         //$file_path = 'uploads/' . $file_name;
-    //         $this->load->library('email', $config);
-    //         $this->email->set_newline("\r\n");
-    //         $this->email->from($this->input->post("email"));
-    //         $this->email->to('natalioluansoares1997@gmail.com.net');
-    //         $this->email->subject($subject);
-    //         $this->email->message($message);
-    //         $this->email->attach($file_data['full_path']);
-    //         if ($this->email->send()) {
-    //             if (delete_files($file_data['file_path'])) {
-    //                 $this->session->set_flashdata('success', 'Application Sended');
-    //                 redirect('pendaftaranpasien');
-    //             }
-    //         } else {
-    //             if (delete_files($file_data['file_path'])) {
-    //                 $this->session->set_flashdata('success', 'There is an error in email send');
-    //                 redirect('pendaftaranpasien');
-    //             }
-    //         }
-    //     } else {
-    //         $this->session->set_flashdata('success', 'There is an error in attach file');
-    //         redirect('pendaftaranpasien');
-    //     }
-    // }
     function upload_file()
     {
         $config['upload_path'] = 'uploads/';

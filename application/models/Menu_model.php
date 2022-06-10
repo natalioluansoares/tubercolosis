@@ -25,76 +25,13 @@ class Menu_model extends CI_Model
         return $nato;
     }
 
-    public function getketerangan()
-    {
-        $keterangan = "SELECT `keterangan` .*, `jenis_obat` .`nama_obat`
-        FROM `keterangan` JOIN `jenis_obat`
-        ON `keterangan`.`id_obat` = `jenis_obat`.`id`";
 
-        $nato = $this->db->query($keterangan);
-        return $nato;
-    }
-    public function getkecamatan()
-    {
-
-        $kecamatan = "SELECT `kecamatan` .*, `kabupaten` .`kabupaten`
-                 FROM `kecamatan` JOIN `kabupaten`
-                 ON `kecamatan`.`id_kabupaten` = `kabupaten`.`id`";
-
-        $nato = $this->db->query($kecamatan)->result_array();
-        return $nato;
-    }
-
-    public function getkelurahan()
-    {
-        $kelurahan = "SELECT `kelurahan` .*, `kecamatan` .`kecamatan`
-                 FROM `kelurahan` JOIN `kecamatan`
-                 ON `kelurahan`.`id_kecamatan` = `kecamatan`.`id`";
-
-        $nato = $this->db->query($kelurahan)->result_array();
-        return $nato;
-    }
-    public function getrumahsakit()
-    {
-        $rumahsakit = "SELECT `rumahsakit` .*, `kelurahan` .`kelurahan`
-                 FROM `rumahsakit` JOIN `kelurahan`
-                 ON `rumahsakit`.`id_kelurahan` = `kelurahan`.`id`";
-
-        $nato = $this->db->query($rumahsakit)->result_array();
-        return $nato;
-    }
-    public function getkonsultasi()
-    {
-        $rumahsakit = "SELECT `konsultasi` .*, `dokter_perawat_bidan` .`nama_dokter`
-                 FROM `konsultasi` JOIN `dokter_perawat_bidan`
-                 ON `konsultasi`.`id_dokter` = `dokter_perawat_bidan`.`id_dopebi`";
-
-        $nato = $this->db->query($rumahsakit)->result_array();
-        return $nato;
-    }
     public function getpenyakit()
     {
         $nato = $this->db->get('penyakit')->result_array();
         return $nato;
     }
-    // public function generate()
-    // {
-    //     if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
 
-    //         $kecamatan = $_GET['kecamatan'];
-    //         $posto = $kecamatan;
-    //     } else {
-
-    //         $kecamatan = ('Masukan Kecamatan Anda');
-    //         $posto = $kecamatan;
-    //     }
-    //     $query = "SELECT * FROM dokter_perawat_bidan
-    //                             INNER JOIN kecamatan ON dokter_perawat_bidan.namakecamatan          = kecamatan.id
-    //                             INNER JOIN rumahsakit ON dokter_perawat_bidan.nama_rumahsakit       = rumahsakit.id
-    //                             WHERE namakecamatan='$posto'";
-    //     $nato = $this->db->query($query)->row_array();
-    //     return $nato;
-    // }
     public function getjenisobat()
     {
         $jenisobat = "SELECT `jenis_obat` .*, `solusi`. `isi_solusi`
@@ -102,17 +39,6 @@ class Menu_model extends CI_Model
                               ON `jenis_obat`.`id_solusi` = `solusi`.`id`";
 
         $nato = $this->db->query($jenisobat)->result_array();
-        return $nato;
-    }
-
-
-    // Data Model User
-    public function getjenisuser()
-    {
-        $useranda = "SELECT `user` .*, `kecamatan`. `kecamatan`
-                              FROM `user` JOIN `kecamatan`
-                              ON `user`.`userkecamatan` = `kecamatan`.`id`";
-        $nato = $this->db->query($useranda)->result_array();
         return $nato;
     }
 
@@ -157,24 +83,8 @@ class Menu_model extends CI_Model
         $query = $this->db->get()->result_array();
         return $query;
     }
-    public function getuserkecamatan()
-    {
-        if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
 
-            $kecamatan = $_GET['kecamatan'];
-            $posto = $kecamatan;
-        } else {
 
-            $kecamatan = ('Masukan Kecamatan Anda');
-            $posto = $kecamatan;
-        }
-
-        $query = "SELECT * FROM user
-                            INNER JOIN kecamatan ON user.userkecamatan = kecamatan.id
-                            WHERE userkecamatan='$posto'";
-        $nato = $this->db->query($query);
-        return $nato;
-    }
     public function getdokterperawatbidan()
     {
         if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
@@ -248,29 +158,6 @@ class Menu_model extends CI_Model
     }
 
 
-    // Data Model berita
-    public function getberitaanual($id = null)
-    {
-        $this->db->select('*');
-        $this->db->from('beritaanual');
-        if ($id != null) {
-            $this->db->where('id', $id);
-        }
-        $query = $this->db->get();
-        return $query;
-    }
-
-    public function getkabupaten($id = null)
-    {
-        $this->db->select('*');
-        $this->db->from('kabupaten');
-        if ($id != null) {
-            $this->db->where('id', $id);
-        }
-        $query = $this->db->get();
-        return $query;
-    }
-
     public function paginationberitaanual($limit, $start, $keyword = null)
     {
         if ($keyword) {
@@ -287,53 +174,9 @@ class Menu_model extends CI_Model
         return $nato;
     }
 
-    public function paginationuser($limit, $start, $keyword = null)
-    {
-        if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
-
-            $kecamatan = $_GET['kecamatan'];
-            $posto = $kecamatan;
-        } else {
-
-            $kecamatan = ('Masukan Kecamatan Anda');
-            $posto = $kecamatan;
-        }
-        if ($keyword) {
-            $this->db->like('username', $keyword);
-            $this->db->or_like('level', $keyword);
-        }
-        return $this->db->query("SELECT * FROM user WHERE userkecamatan='$posto'", $limit, $start)->result_array();
-    }
     public function userpagination()
     {
         $nato = $this->db->get('user')->num_rows();
-        return $nato;
-    }
-
-
-    public function paginationberitamensal($limit, $start, $keyword = null)
-    {
-        if ($keyword) {
-            $this->db->like('nama_terbit', $keyword);
-        }
-        return $this->db->get('beritamensal', $limit, $start)->result_array();
-    }
-    public function beritamensalpagination()
-    {
-        $nato = $this->db->get('beritamensal')->num_rows();
-        return $nato;
-    }
-    public function paginationkabupaten($limit, $start, $keyword = null)
-    {
-        if ($keyword) {
-            $this->db->like('kabupaten', $keyword);
-        }
-        return $nato = $this->db->get('kabupaten', $limit, $start)->result_array();
-        return $nato;
-    }
-    public function kabupatenpagination()
-    {
-        $nato = $this->db->get('kabupaten')->num_rows();
         return $nato;
     }
 
