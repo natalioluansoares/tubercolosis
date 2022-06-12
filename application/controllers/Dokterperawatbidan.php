@@ -199,16 +199,9 @@ class Dokterperawatbidan extends CI_Controller
 
     public function downloadpasien()
     {
-
-        $data['title'] = 'Download Data Pendaftaran Pasien';
-        $data['details'] = $this->dokter->getpendaftaranpasie();
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templateadmin/header_admin', $data);
-            $this->load->view('dokterperawatbidan/detailpendaftaran', $data);
-            $this->load->view('templateadmin/sidebar_admin');
-            $this->load->view('templateadmin/footer_admin');
-        } else {
-        }
+        $this->load->library('mypdf');
+        $data['pendaf'] = $this->dokter->download();
+        $this->mypdf->generate('Laporan/datapasiendokter', $data);
     }
     public function downloaddiagnosa()
     {

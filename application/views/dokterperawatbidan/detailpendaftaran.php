@@ -72,18 +72,11 @@ kecamatan
                                             <td><?= $Dt['umurpasien']; ?></td>
                                             <td><?= $Dt['alamatpasien']; ?></td>
                                             <td><?= date('d,F,Y', $Dt['tgl_diagnosa']); ?></td>
-                                            <td><a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default text-center" readonly><i class="fa fa-download"></i></a></td>
+                                            <td><a href="<?= base_url('dokterperawatbidan/downloadpasien'); ?>" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default" readonly><i class="fa fa-download"></i></a></td>
                                         </tr>
                                     </tbody>
                                 <?php endforeach; ?>
                             </table>
-                            <?php if (empty($details)) : ?>
-                                <div class="badge bg-danger">
-                                    <span class="text-center"><i class="fa fa-info-circle"></i>
-                                        Data Yang Dicari Oleh Anda Harus Sesuai Kecamatan!,
-                                        Jika Data Dicari Tidak Mendapat Karena Kecamatan Anda Masih Salah....Semoga Anda Berhasil!</span>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

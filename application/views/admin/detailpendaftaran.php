@@ -52,11 +52,12 @@ kecamatan
                                         <th>#</th>
                                         <th>Nama Dokter</th>
                                         <th>Nama Pasien</th>
-                                        <th>Nomor KTP</th>
                                         <th>Jenis Kelamin</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Nomor KTP</th>
                                         <th>Umur</th>
                                         <th>ALamat</th>
-                                        <td>Bulan Pendaftaran</td>
+                                        <td>Tanggal Pendaftaran</td>
                                         <th><i class="fa fa-gear (alias)"></i></th>
                                     </tr>
                                 </thead>
@@ -67,23 +68,17 @@ kecamatan
                                             <td><?= $no++;  ?></td>
                                             <td><?= $Dt['nama_dokter']; ?></td>
                                             <td><?= $Dt['namapasien']; ?></td>
-                                            <td><?= $Dt['nomor_KTP']; ?></td>
                                             <td><?= $Dt['jenis_kelamin']; ?></td>
+                                            <td><?= $Dt['tanggal_lahir']; ?></td>
+                                            <td><?= $Dt['nomor_KTP']; ?></td>
                                             <td><?= $Dt['umurpasien']; ?></td>
                                             <td><?= $Dt['alamatpasien']; ?></td>
                                             <td><?= date('d,F,Y', $Dt['tgl_diagnosa']); ?></td>
-                                            <td><a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default text-center" readonly><i class="fa fa-download"></i></a></td>
+                                            <td><a href="<?= base_url('admin/downloadpasien'); ?>" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default" readonly><i class="fa fa-download"></i></a></td>
                                         </tr>
                                     </tbody>
                                 <?php endforeach; ?>
                             </table>
-                            <?php if (empty($details)) : ?>
-                                <div class="badge bg-danger">
-                                    <span class="text-center"><i class="fa fa-info-circle"></i>
-                                        Data Yang Dicari Oleh Anda Harus Sesuai Kecamatan!,
-                                        Jika Data Dicari Tidak Mendapat Karena Kecamatan Anda Masih Salah....Semoga Anda Berhasil!</span>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

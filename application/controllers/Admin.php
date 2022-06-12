@@ -81,19 +81,19 @@ class Admin extends CI_Controller
     }
 
     // Download Data Pasien
-    public function downloadpasien()
-    {
+    // public function downloadpasien()
+    // {
 
-        $data['title'] = 'Download Data Pendaftaran Pasien';
-        $data['details'] = $this->model->getpendaftaranpasie();
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templateadmin/header_admin', $data);
-            $this->load->view('admin/detailpendaftaran', $data);
-            $this->load->view('templateadmin/sidebar_admin');
-            $this->load->view('templateadmin/footer_admin');
-        } else {
-        }
-    }
+    //     $data['title'] = 'Download Data Pendaftaran Pasien';
+    //     $data['details'] = $this->model->getpendaftaranpasie();
+    //     if ($this->form_validation->run() == false) {
+    //         $this->load->view('templateadmin/header_admin', $data);
+    //         $this->load->view('admin/detailpendaftaran', $data);
+    //         $this->load->view('templateadmin/sidebar_admin');
+    //         $this->load->view('templateadmin/footer_admin');
+    //     } else {
+    //     }
+    // }
     public function downloaddiagnosa()
     {
         $data['title'] = 'Download Data Diagnosa Pasien';
@@ -369,5 +369,11 @@ class Admin extends CI_Controller
             $this->load->view('templateadmin/footer_admin');
         } else {
         }
+    }
+    public function downloadpasien()
+    {
+        $this->load->library('mypdf');
+        $data['pendaf'] = $this->model->download();
+        $this->mypdf->generate('Laporan/datapasienadmin', $data);
     }
 }

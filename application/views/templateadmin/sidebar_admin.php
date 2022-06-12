@@ -32,8 +32,15 @@
                                  </ul>
                              </li>
                          <?php } ?>
-
-
+                         <?php if ($this->fungsi->user_login()->level == 'admin') { ?>
+                             <li class="has-submenu">
+                                 <a href="#" title="Data User"><i class="fa fa-user-circle"></i><?= ucfirst($this->fungsi->user_login()->level) ?></a>
+                                 <ul class="submenu">
+                                     <li><a href="<?= base_url('user'); ?>">
+                                             <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/images.jpg" class="rounded-circle mr-2" width="30px" alt=""><?= ucfirst($this->fungsi->user_login()->username) ?></a></li>
+                                 </ul>
+                             </li>
+                         <?php } ?>
                          <?php if ($this->fungsi->user_login()->level == 'admin') { ?>
                              <li class="has-submenu">
                                  <a href="#" title="Data Regis dan Data Penyakit TBC"><i class="fa fa-user-plus"></i>Data Admin</a>
@@ -48,16 +55,6 @@
                                  </ul>
                              </li>
 
-                         <?php } ?>
-
-                         <?php if ($this->fungsi->user_login()->level == 'admin') { ?>
-                             <li class="has-submenu">
-                                 <a href="#" title="Data User"><i class="fa fa-user-circle"></i><?= ucfirst($this->fungsi->user_login()->level) ?></a>
-                                 <ul class="submenu">
-                                     <li><a href="<?= base_url('user'); ?>">
-                                             <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/images.jpg" class="rounded-circle mr-2" width="30px" alt=""><?= ucfirst($this->fungsi->user_login()->username) ?></a></li>
-                                 </ul>
-                             </li>
                          <?php } ?>
 
                          <?php if ($this->fungsi->user_login()->level == 'admin') { ?>

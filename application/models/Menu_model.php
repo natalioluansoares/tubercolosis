@@ -75,16 +75,19 @@ class Menu_model extends CI_Model
 
         $this->db->select('*');
         $this->db->from('pendafaranpasien');
-        $this->db->join('kecamatan', 'pendafaranpasien.alamatpasien = kecamatan.id', 'kecamatan', 'LEFT');
+        $this->db->join('dokter_perawat_bidan', 'pendafaranpasien.nama_dokter = dokter_perawat_bidan. id_dopebi', 'nama_dokter', 'LEFT');
         $this->db->where('idpend', $id);
         $query = $this->db->get()->row_array();
         return $query;
+    }
+    public function download()
+    {
 
-        // $query = "SELECT * FROM pendafaranpasien
-        //                     INNER JOIN kecamatan ON pendafaranpasien.userkecamatan = kecamatan.id
-        //                     WHERE idpend='$id'";
-        // $nato = $this->db->query($query)->row_array();
-        // return $nato;
+        $this->db->select('*');
+        $this->db->from('pendafaranpasien');
+        $this->db->join('dokter_perawat_bidan', 'pendafaranpasien.nama_dokter = dokter_perawat_bidan. id_dopebi', 'nama_dokter', 'LEFT');
+        $query = $this->db->get()->result_array();
+        return $query;
     }
 
     public function  getdokter($id)
