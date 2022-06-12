@@ -30,7 +30,7 @@ class Diagnosa extends CI_Controller
 
     public function relasidiagnosa()
     {
-        $data['title'] = 'Data Diagnosa Pasien';
+        $data['title'] = 'Data Diagnosa Pasien Tubercolosis';
         $data['gejala'] = $this->db->get('gejala')->result_array();
         $data['solusi'] = $this->db->get('solusi')->result_array();
 

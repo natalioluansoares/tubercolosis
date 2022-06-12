@@ -38,134 +38,41 @@
         </div>
         <div class="row">
             <div class="flash" data-flas1="<?php echo $this->session->flashdata('success'); ?>"></div>
-            <div class="col-lg-9 center">
+            <div class="col-lg-12 center">
                 <div class="card m-b-30" style="background-color: rgb(241, 233, 233); color: black">
                     <h3 class="mt-2 text-center" style="font-family:Times New Roman"><?= $title; ?></h3>
                     <p class="text-muted m-b-30 font-14 text-center" style="font-family:Times New Roman">
                         Data Ini Hanya Digunakan Untuk Download Data Diagnosa Pendaftaran Pasien</p>
                     <div class="card-header bg-primary text-white">Input Data Pendaftaran Pasien</div>
                     <div class="card-body">
-                        <form class="form-inline">
-                            <div class="col-lg-6">
-                                <div class="input-group ml-1">
-                                    <label class="mr-2">Kecamatan Anda:</label>
-                                    <select name="namapasien" class="form-control">
-                                        <option value="">Silakan Pilih Kecamatan Anda</option>
-                                        <option value="<?= ucfirst($this->fungsi->user_login()->username) ?>"><?= ucfirst($this->fungsi->user_login()->username) ?></option>
-                                    </select>
-                                    <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-default">
-                                            <i class="fa fa-user"></i></span></div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary ml-2" title="Tampilkan Data Anda"><i class="fa fa-fw fa-eye"></i>Generate</button>
-                            <a href="<?= base_url('pendaftaranpasien/pendaftaran') ?>" class="btn btn-info ml-2"><i class="fa fa-fw fa-eye"></i>Kembali</a>
-                        </form>
-                    </div>
-                    <?php
-                    if ((isset($_GET['namapasien']) && $_GET['namapasien'] != '')) {
-
-                        $namapasien = $_GET['namapasien'];
-                        $naran = $namapasien;
-                    } else {
-
-                        $namapasien = ('Masukan Nama Anda');
-                        $naran = $namapasien;
-                    }
-                    ?>
-                    <div class="alert alert-info">Menampilkan Data Pendaftaran Nama Pasien:
-                        <span class="font-weight-bold "><?php echo $namapasien  ?></span>
-                    </div>
-                    <div class="table-responsive b-0">
-                        <table class="table table-bordered table-striped" id="datatable">
-                            <thead class="table-primary">
-                                <tr>
-                                    <th>Nama Pasien</th>
-                                    <th>Kabupaten</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kelurahan</th>
-                                    <th>RumahSakit</th>
-                                    <th>Dokter</th>
-                                    <th>konsultasi</th>
-                                    <th><i class="fa fa-gear (alias)"></i></th>
-                                </tr>
-                            </thead>
-                            <?php foreach ($dia as $Dt) : ?>
-                                <tbody>
+                        <div class="table-responsive b-0">
+                            <table class="table table-bordered table-striped" id="datatable">
+                                <thead class="table-primary">
                                     <tr>
-                                        <td><?= $Dt['nama_user']; ?></td>
-                                        <td><?= $Dt['kabupaten']; ?></td>
-                                        <td><?= $Dt['kecamatan']; ?></td>
-                                        <td><?= $Dt['kelurahan']; ?></td>
-                                        <td><?= $Dt['nama_rumahsakit']; ?></td>
-                                        <td><?= $Dt['nama_dokter']; ?></td>
-                                        <td><?= $Dt['nama_konsultasi']; ?></td>
-                                        <td a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default" readonly><i class="fa fa-download"></i></a></td>
+                                        <th>#</th>
+                                        <th>Nama Pasien</th>
+                                        <th>Nama Penyakit</th>
+                                        <th>Isi Solusi</th>
+                                        <th>Tanggal Diagnosa</th>
+                                        <th><i class="fa fa-gear (alias)"></i></th>
                                     </tr>
-                                </tbody>
-                                <td>Bulan Pendaftaran</td>
-                                <td><?= $Dt['tanggal_diagnosa']; ?></td>
-                            <?php endforeach; ?>
-                        </table>
-                    </div>
-                    <?php if (empty($diagnosa)) : ?>
-                        <div class="badge bg-danger">
-                            <span class="text-center"><i class="fa fa-info-circle"></i>
-                                Data Yang Dicari Oleh Anda Harus Sesuai Nama Anda!,
-                                Jika Data Dicari Tidak Mendapat Karena Nama Anda Masih Salah....Semoga Anda Berhasil!</span>
+                                </thead>
+                                <?php $no = 1;
+                                foreach ($dia as $Dt) : ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $Dt['nama_user']; ?></td>
+                                            <td><?= $Dt['nama_penyakit']; ?></td>
+                                            <td><?= $Dt['isi_solusi']; ?></td>
+                                            <td><?= $Dt['tanggal_diagnosa']; ?></td>
+                                            <td a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default" readonly><i class="fa fa-download"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                <?php endforeach; ?>
+                            </table>
                         </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <div class="col-lg-3 center">
-                <div class="card m-b-30">
-                    <div class="card-body" style="background-color: rgb(241, 233, 233); color: black">
-                        <h4 class="mt-2" style="font-family:Times New Roman">Berita Penyakit</h4>
-                        <p class="text-muted m-b-30 font-14" style="font-family:Times New Roman">
-                            Jangan Menyesal Terhadap Kegagalanmu Karena Kegagalan Mengajarmu Untuk Mengerti Apa Itu Perjuangan.</p>
-                        <form action="#">
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div><!-- input-group -->
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div><!-- input-group -->
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

@@ -45,24 +45,26 @@
                             Data Ini Hanya Digunakan Untuk Menginput Data Pendaftaran Pasien</p>
                         <form action="<?= base_url('pendaftaranpasien'); ?>" method="POST">
                             <div class="modal-body">
-                                <input type="text" class="form-control" name="tanggaldiagnosa" id="nama" value="<?= $tanggalbulantahun; ?>" readonly>
-                                <label for="">Kode Pasien</label>
+                                <label for="">Nama Dokter</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="kodepasien" name="kodepasien" value="<?= set_value('kodepasien'); ?>" placeholder="Kode Pasien">
+                                    <select class="form-control" id="namadokter" name="namadokter" value="<?= set_value('namadokter'); ?>">
+                                        <option value="">Pilih Nama Dokter</option>
+                                        <?php foreach ($dokter as $dok) : ?>
+                                            <option value="<?= $dok['id_dopebi'] ?>"><?= $dok['nama_dokter'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                     <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                             <i class="fa fa-pencil"></i></span></div>
                                 </div>
-                                <?= form_error('kodepasien', '<small class="text-danger pl-2">', '</small>'); ?><br>
                                 <label for="">Nama Pasien</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="namapasien" placeholder="Nama Pasien" name="namapasien" value="<?= ucfirst($this->fungsi->user_login()->username) ?>" readonly>
                                     <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                             <i class="fa fa-user-circle"></i></span></div>
-                                </div>
-                                <?= form_error('namapasien', '<small class="text-danger pl-2">', '</small>'); ?><br>
-                                <label for="">Nomor Eleitoral</label>
+                                </div><br>
+                                <label for="">Nomor KTP</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="nomoreleitpral" placeholder="Nomor Eletoral" name="nomoreleitoral" value="<?= set_value('nomoreleitoral'); ?>">
+                                    <input type="text" class="form-control" id="nomoreleitpral" placeholder="Nomor KTP" name="nomoreleitoral" value="<?= set_value('nomoreleitoral'); ?>">
                                     <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                             <i class="fa fa-qrcode"></i></span></div>
                                 </div>
@@ -74,11 +76,9 @@
                                         <option value="Laki-Laki">Laki-Laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
-
                                     <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                             <i class="fa fa-mars-double"></i></span></div>
                                 </div>
-                                <?= form_error('alamatberita', '<small class="text-danger pl-2">', '</small>'); ?><br>
                                 <label for="">Tanggal Lahir Pasien</label>
                                 <div class="input-group">
                                     <input type="date" class="form-control " id="tanggallahirpasien" name="tanggallahirpasien" value="<?= set_value('tanggallahirpasien'); ?>" placeholder="Tanggal Lahir Pasien">
@@ -95,12 +95,7 @@
                                 <?= form_error('umurpasien', '<small class="text-danger pl-2">', '</small>'); ?><br>
                                 <label for="">Alamat Pasien</label>
                                 <div class="input-group">
-                                    <select name="alamatpasien" id="" class="form-control">
-                                        <option value="">Pilih Kecamatan</option>
-                                        <?php foreach ($kecamatan as $ke) : ?>
-                                            <option value="<?= $ke['id'] ?>"><?= $ke['kecamatan'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <textarea class="form-control" name="alamatpasien" id="" cols="30" rows="4" placeholder="Alamat Pasien"></textarea>
                                     <div class="input-group-append bg-custom b-0"><span class="input-group-text btn btn-info">
                                             <i class="fa fa-folder-open-o "></i></span></div>
                                 </div>

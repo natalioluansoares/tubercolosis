@@ -46,40 +46,16 @@ class Menu_model extends CI_Model
     // Data Model Pendaftaran
     public function getpendaftaranpasie()
     {
-        if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
-
-            $kecamatan = $_GET['kecamatan'];
-            $posto = $kecamatan;
-        } else {
-
-            $kecamatan = ('Masukan Kecamatan Anda');
-            $posto = $kecamatan;
-        }
-
-        $useranda = "SELECT `pendafaranpasien` .*, `kecamatan`. `kecamatan`
-                              FROM `pendafaranpasien` JOIN `kecamatan`
-                              ON `pendafaranpasien`.`userkecamatan` = `kecamatan`.`id`
-                              WHERE kecamatan='$posto'";
-        $nato = $this->db->query($useranda)->result_array();
-        return $nato;
+        $this->db->select('*');
+        $this->db->from('pendafaranpasien');
+        $query = $this->db->get()->result_array();
+        return $query;
     }
     public function pendaftaranpasie()
     {
-        if ((isset($_GET['namapasien']) && $_GET['namapasien'] != '')) {
-
-            $namapasien = $_GET['namapasien'];
-            $naran = $namapasien;
-        } else {
-
-            $namapasien = ('Masukan Nama Anda');
-            $naran = $namapasien;
-        }
-
-
         $this->db->select('*');
         $this->db->from('pendafaranpasien');
-        $this->db->join('kecamatan', 'pendafaranpasien.alamatpasien = kecamatan.id', 'kecamatan', 'LEFT');
-        $this->db->where('namapasien', $naran);
+        $this->db->join('dokter_perawat_bidan', 'pendafaranpasien.nama_dokter = dokter_perawat_bidan.id_dopebi', 'nama_dokter', 'LEFT');
         $query = $this->db->get()->result_array();
         return $query;
     }
@@ -87,20 +63,10 @@ class Menu_model extends CI_Model
 
     public function getdokterperawatbidan()
     {
-        if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
-
-            $kecamatan = $_GET['kecamatan'];
-            $posto = $kecamatan;
-        } else {
-
-            $kecamatan = ('Masukan Kecamatan Anda');
-            $posto = $kecamatan;
-        }
 
         $this->db->select('*');
         $this->db->from('dokter_perawat_bidan');
         $this->db->join('rumahsakit', 'dokter_perawat_bidan.namarumahsakit = rumahsakit.id', 'nama_rumahsakit', 'LEFT');
-        $this->db->where('namakecamatan', $posto);
         $query = $this->db->get()->result_array();
         return $query;
     }

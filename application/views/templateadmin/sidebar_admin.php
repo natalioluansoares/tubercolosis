@@ -157,6 +157,8 @@
                                      <li><a href="<?= base_url('diagnosa/relasidiagnosa'); ?>">Input Pendaftaran Pasien</a></li>
                                      <li><a href="<?= base_url('pendaftaranpasien/detailhasilpendaftaran'); ?>">Detail Pendaftaran Pasien</a></li>
                                      <li><a href="<?= base_url('pendaftaranpasien/detailhasildiagosa'); ?>">Detail Diagnosa Pasien</a></li>
+                                     <li><a href="<?= base_url(''); ?>">Data Aturan Hasil Diagnosa</a></li>
+                                     <li><a href="<?= base_url('dokterperawatbidan/aturangejala'); ?>">Data Aturan Hasil Gejala</a></li>
                                  </ul>
                              </li>
                          <?php } ?>

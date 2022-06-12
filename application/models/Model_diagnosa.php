@@ -48,11 +48,11 @@ class Model_diagnosa extends CI_Model
     }
     public function insertHasil()
     {
-        // $username = ($this->fungsi->user_login()->username);
-        // $level = ($this->fungsi->user_login()->level);
+        $username = ($this->fungsi->user_login()->username);
+        $level = ($this->fungsi->user_login()->level);
 
-        $namapaisen             = $this->input->post('namapasien');
-        $leveluser              = $this->input->post('leveluser');
+        // $namapaisen             = $this->input->post('namapasien');
+        // $leveluser              = $this->input->post('leveluser');
         $konsultasi             = $this->input->post('konsultasi');
         $bulan                  = $this->input->post('bulan');
         $tubercolosis = $this->detailDiagnosa();
@@ -63,12 +63,11 @@ class Model_diagnosa extends CI_Model
         }
 
         $data = [
-            'nama_user'             => $namapaisen,
-            'user_level'            => $leveluser,
+            'nama_user'             => $username,
+            'user_level'            => $level,
             'nama_penyakit'         => $penyakitnya,
             'isi_solusi'            => $isi_solusi,
-            'id_konsultasi'         => $konsultasi,
-            'tanggal_diagnosa'      => $bulan
+            'tanggal_diagnosa'      => time('d F Y')
         ];
         $nato = $this->db->insert('hasil_diagnosa_penyakit', $data);
         return $nato;

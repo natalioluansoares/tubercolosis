@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pendaftaranpasi extends CI_Controller
+class Pendaftaranpasien extends CI_Controller
 {
     public function __construct()
     {
@@ -16,14 +16,14 @@ class Pendaftaranpasi extends CI_Controller
     public function index()
     {
 
-        $data['title'] = 'Data Pendaftaran';
-        $this->form_validation->set_rules('kodepasien', 'Masukan Kode Pasien', 'required');
-        $this->form_validation->set_rules('tanggaldiagnosa', 'Masukan Nama Tanggal Diagnosa', 'required');
+        $data['title'] = 'Data Pendaftaran Pasien';
+        $this->form_validation->set_rules('namadokter', 'Masukan Nama Dokter', 'required');
         $this->form_validation->set_rules('namapasien', 'Masukan Nama Pasien', 'required');
         $this->form_validation->set_rules('nomoreleitoral', 'Masukan Nomor Eleitoral', 'required');
         $this->form_validation->set_rules('umurpasien', 'Masukan Umur Pasien', 'required');
-        $this->form_validation->set_rules('tanggallahirpasien', 'Masukan Tanggal Lahir Pasien', 'required');
         $this->form_validation->set_rules('alamatpasien', 'Masukan Alamat Pasien', 'required');
+
+        $data['dokter'] = $this->db->get('dokter_perawat_bidan')->result_array();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templateadmin/header_admin', $data);
@@ -31,35 +31,34 @@ class Pendaftaranpasi extends CI_Controller
             $this->load->view('templateadmin/sidebar_admin');
             $this->load->view('templateadmin/footer_admin');
         } else {
-            $kodepasien             = $this->input->post('kodepasien');
-            $tanggaldiagnosa        = $this->input->post('tanggaldiagnosa');
+            $namadokter             = $this->input->post('namadokter');
             $namapasien             = $this->input->post('namapasien');
+            $jeniskelamin           = $this->input->post('jeniskelamin');
+            $tanggallahirpasien        = $this->input->post('tanggallahirpasien');
             $nomoreleitoral         = $this->input->post('nomoreleitoral');
             $umurpasien             = $this->input->post('umurpasien');
-            $jeniskelamin           = $this->input->post('jeniskelamin');
-            $tanggallahirpasien     = $this->input->post('tanggallahirpasien');
             $alamatpasien           = $this->input->post('alamatpasien');
 
             $data                   = [
-                'kodepasien'       => $kodepasien,
-                'tgl_diagnosa'     => $tanggaldiagnosa,
+                'nama_dokter'      => $namadokter,
+                'tanggal_lahir'     => $tanggallahirpasien,
                 'namapasien'       => $namapasien,
                 'nomor_KTP'        => $nomoreleitoral,
                 'umurpasien'       => $umurpasien,
                 'jenis_kelamin'    => $jeniskelamin,
-                'tanggal_lahir'    => $tanggallahirpasien,
+                'tgl_diagnosa'     => time('d F Y'),
                 'alamatpasien'     => $alamatpasien
             ];
             $this->db->insert('pendafaranpasien', $data);
             $this->session->set_flashdata('success', 'Data Pendaftaran Pasien Berhasil Disimpan');
-            redirect('pendaftaranpasien/detailhasilpendaftaran');
+            redirect('pendaftaranpasien');
         }
     }
 
     public function detailhasildiagosa()
     {
         $data['title'] = 'Data Diagnosa Pasien';
-        $data['dia'] = $this->model->joindatadiagnosa();
+        $data['dia'] = $this->db->get('hasil_diagnosa_penyakit')->result_array();
         // $data['dia'] = $this->db->get('hasil_diagnosa_penyakit')->result_array();
         // var_dump($data['dia']);
         // die;
