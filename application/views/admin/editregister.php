@@ -81,6 +81,8 @@
                                                     <i class="fa fa-envelope"></i></span>
                                             </div>
                                         </div><br>
+                                    </div>
+                                    <div class="col-lg-6">
                                         <label for="email" style="color: black;">Email</label>
                                         <div class="input-group">
                                             <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?= $register['email']; ?>" readonly>
@@ -89,8 +91,6 @@
                                                     <i class="fa fa-envelope"></i></span>
                                             </div>
                                         </div><br>
-                                    </div>
-                                    <div class="col-lg-6">
                                         <label for="jeniskelamin" style="color: black;">Jenis Kelamin</label>
                                         <div class="input-group">
                                             <select name="jeniskelamin" id="jeniskelamin" class="form-control">
@@ -118,7 +118,7 @@
 
                                         <label for="alamat" style="color: black;">Alamat</label>
                                         <div class="input-group">
-                                            <textarea name="alamat" id="alamat" cols="80" rows="3" class="form-control" placeholder="Alamat"><?= $register['alamat']; ?></textarea>
+                                            <textarea name="alamat" id="alamat" cols="80" rows="4" class="form-control" placeholder="Alamat"><?= $register['alamat']; ?></textarea>
                                             <div class="input-group-append bg-custom b-0">
                                                 <span class="input-group-text btn btn-success">
                                                     <i class="fa fa-user"></i></span>

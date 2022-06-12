@@ -11,7 +11,6 @@ class Dokterperawatbidan extends CI_Controller
         check_dokter();
         // check_already_login();
         $this->load->model('menu_model', 'dokter');
-        $this->load->model('kecamatan_m', 'modelke');
     }
     public function index()
     {
@@ -248,8 +247,8 @@ class Dokterperawatbidan extends CI_Controller
     }
     public function hasilpendaftaran()
     {
-        $data['title'] = 'Hasil Pendafataran';
-        $data['details'] = $this->db->get('pendafaranpasien')->result_array();
+        $data['title'] = 'Hasil Pendafataran Pasien';
+        $data['details'] = $this->dokter->pendaftaranpasie();
         if ($this->form_validation->run() == false) {
             $this->load->view('templateadmin/header_admin', $data);
             $this->load->view('dokterperawatbidan/detailpendaftaran', $data);
@@ -260,7 +259,7 @@ class Dokterperawatbidan extends CI_Controller
     }
     public function hasildiagnosa()
     {
-        $data['title'] = 'Hasil Diagnosa';
+        $data['title'] = 'Hasil Diagnosa Pasien';
         $data['details'] = $this->db->get('hasil_diagnosa_penyakit')->result_array();
         if ($this->form_validation->run() == false) {
             $this->load->view('templateadmin/header_admin', $data);

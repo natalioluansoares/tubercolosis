@@ -74,8 +74,8 @@
                              <li class="has-submenu">
                                  <a href="#" title="Data Pendaftaran"><i class="fa fa-file-text-o" aria-hidden="true"></i>Hasil Pendaftaran Pasien</a>
                                  <ul class="submenu">
-                                     <li><a href="<?= base_url('pendaftaranpasien'); ?>">Pendaftaran Pasien</a></li>
-                                     <li><a href="<?= base_url('pendaftaranpasien/ubahpendaftaranpasien'); ?>">Diagnosa Pasien</a></li>
+                                     <li><a href="<?= base_url('admin/hasilpendaftaran'); ?>">Data Pendaftaran Pasien</a></li>
+                                     <li><a href="<?= base_url('admin/hasildiagnosa'); ?>">Hasil Diagnosa Pasien</a></li>
                                  </ul>
                              </li>
                          <?php } ?>
@@ -140,6 +140,14 @@
                          <?php } ?>
 
                          <!-- DATA MEMBER -->
+                         <?php if ($this->fungsi->user_login()->level == 'member') { ?>
+                             <li class="has-submenu">
+                                 <a href="#" title="Data User"><i class="fa  fa-bank (alias)"></i></i>Dashboard</a>
+                                 <ul class="submenu">
+                                     <li><a href="<?= base_url('dashboard'); ?>">Data Dashboard</a></li>
+                                 </ul>
+                             </li>
+                         <?php } ?>
                          <?php if ($this->fungsi->user_login()->level == 'member') { ?>
                              <li class="has-submenu">
                                  <a href="#" title="Data User"><i class="fa fa-user-circle"></i><?= ucfirst($this->fungsi->user_login()->level) ?></a>

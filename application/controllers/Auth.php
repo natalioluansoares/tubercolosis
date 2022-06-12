@@ -49,7 +49,7 @@ class Auth extends CI_Controller
 						title: 'Success',
 						text: 'Selamat Datang:<?= ucfirst($this->fungsi->user_login()->username) ?>, Anda Sudah Berhasil Login'
 					}).then((result) => {
-						window.location = '<?= site_url('user') ?>';
+						window.location = '<?= site_url('dashboard') ?>';
 					})
 				</script>
 			<?php

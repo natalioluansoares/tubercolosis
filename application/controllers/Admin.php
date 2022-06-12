@@ -346,4 +346,28 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('success', 'Data Dokter & Perawat & Bidan Berhasil Diubah');
         redirect('admin/dokter');
     }
+    public function hasilpendaftaran()
+    {
+        $data['title'] = 'Hasil Pendafataran Pasien';
+        $data['details'] = $this->model->pendaftaranpasie();
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templateadmin/header_admin', $data);
+            $this->load->view('admin/detailpendaftaran', $data);
+            $this->load->view('templateadmin/sidebar_admin');
+            $this->load->view('templateadmin/footer_admin');
+        } else {
+        }
+    }
+    public function hasildiagnosa()
+    {
+        $data['title'] = 'Hasil Diagnosa Pasien';
+        $data['details'] = $this->db->get('hasil_diagnosa_penyakit')->result_array();
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templateadmin/header_admin', $data);
+            $this->load->view('admin/detaildiagnosa', $data);
+            $this->load->view('templateadmin/sidebar_admin');
+            $this->load->view('templateadmin/footer_admin');
+        } else {
+        }
+    }
 }

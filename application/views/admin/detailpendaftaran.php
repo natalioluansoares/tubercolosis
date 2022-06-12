@@ -39,130 +39,52 @@ kecamatan
         </div>
         <div class="row">
             <div class="flash" data-flas1="<?php echo $this->session->flashdata('success'); ?>"></div>
-            <div class="col-lg-9 center">
+            <div class="col-lg-12 center">
                 <div class="card m-b-30" style="background-color: rgb(241, 233, 233); color: black">
                     <h3 class="mt-2 text-center" style="font-family:Times New Roman"><?= $title; ?></h3>
                     <p class="text-muted m-b-30 font-14 text-center" style="font-family:Times New Roman">
                         Data Ini Hanya Digunakan Untuk Download Data Diagnosa Pendaftaran Pasien</p>
-                    <div class="card-header bg-primary text-white">Input Data Pendaftaran Pasien</div>
                     <div class="card-body">
-                        <form class="form-inline">
-                            <div class="col-lg-5">
-                                <div class="input-group mt-2">
-                                    <select name="kecamatan" id="kecamatan" class="select2 mb-2 select2-multiple card shadow form-control" data-width="100%" data-live-search="true" value="Cari Data Sesuai Dengan Kecamatan">
-                                        <option value="">Cari Data Pasien Sesuai Dengan Kecamatan</option>
-                                        <?php foreach ($kecamatan as $posto) : ?>
-                                            <option value="<?= $posto['kecamatan']; ?>"><?= $posto['kecamatan']; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary ml-3 mt-2" title="Tampilkan Data Pasien"><i class="fa fa-fw fa-eye"></i>Generate</button>
-                        </form>
-                    </div>
-                    <?php
-                    if ((isset($_GET['kecamatan']) && $_GET['kecamatan'] != '')) {
-
-                        $kecamatan = $_GET['kecamatan'];
-                        $posto = $kecamatan;
-                    } else {
-
-                        $kecamatan = ('Masukan Kecamatan Anda');
-                        $posto = $kecamatan;
-                    }
-                    ?>
-                    <div class="alert alert-info">Menampilkan Data Pendaftaran Kecamatan Pasien:
-                        <span class="font-weight-bold "><?php echo $kecamatan  ?></span>
-                    </div>
-                    <div>
-                        <div class="table-responsive">
+                        <div class="table-responsive b-0">
                             <table class="table table-bordered table-striped" id="datatable">
                                 <thead class="table-primary">
                                     <tr>
-                                        <th>Kode Pasien</th>
+                                        <th>#</th>
+                                        <th>Nama Dokter</th>
                                         <th>Nama Pasien</th>
-                                        <th>No Eleitoral</th>
+                                        <th>Nomor KTP</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Umur</th>
                                         <th>ALamat</th>
+                                        <td>Bulan Pendaftaran</td>
                                         <th><i class="fa fa-gear (alias)"></i></th>
                                     </tr>
                                 </thead>
-                                <?php foreach ($details as $Dt) : ?>
+                                <?php $no = 1;
+                                foreach ($details as $Dt) : ?>
                                     <tbody>
                                         <tr>
-                                            <td><?= $Dt['kodepasien']; ?></td>
+                                            <td><?= $no++;  ?></td>
+                                            <td><?= $Dt['nama_dokter']; ?></td>
                                             <td><?= $Dt['namapasien']; ?></td>
-                                            <td><?= $Dt['nomoreleitoral']; ?></td>
+                                            <td><?= $Dt['nomor_KTP']; ?></td>
                                             <td><?= $Dt['jenis_kelamin']; ?></td>
                                             <td><?= $Dt['umurpasien']; ?></td>
                                             <td><?= $Dt['alamatpasien']; ?></td>
-                                            <td><a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default" readonly><i class="fa fa-download"></i></a></td>
+                                            <td><?= date('d,F,Y', $Dt['tgl_diagnosa']); ?></td>
+                                            <td><a href="" title="Click Untuk Download File Pendaftaran Pasien" class="btn btn-default text-center" readonly><i class="fa fa-download"></i></a></td>
                                         </tr>
                                     </tbody>
-                                    <!-- <td>Bulan Pendaftaran</td>
-                                    <td><?= $Dt['bulan_tahun']; ?></td> -->
                                 <?php endforeach; ?>
                             </table>
+                            <?php if (empty($details)) : ?>
+                                <div class="badge bg-danger">
+                                    <span class="text-center"><i class="fa fa-info-circle"></i>
+                                        Data Yang Dicari Oleh Anda Harus Sesuai Kecamatan!,
+                                        Jika Data Dicari Tidak Mendapat Karena Kecamatan Anda Masih Salah....Semoga Anda Berhasil!</span>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                    </div>
-                    <?php if (empty($details)) : ?>
-                        <div class="badge bg-danger">
-                            <span class="text-center"><i class="fa fa-info-circle"></i>
-                                Data Yang Dicari Oleh Anda Harus Sesuai Kecamatan!,
-                                Jika Data Dicari Tidak Mendapat Karena Kecamatan Anda Masih Salah....Semoga Anda Berhasil!</span>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <div class="col-lg-3 center">
-                <div class="card m-b-30">
-                    <div class="card-body" style="background-color: rgb(241, 233, 233); color: black">
-                        <h4 class="mt-2" style="font-family:Times New Roman">Berita Penyakit</h4>
-                        <p class="text-muted m-b-30 font-14" style="font-family:Times New Roman">
-                            Jangan Menyesal Terhadap Kegagalanmu Karena Kegagalan Mengajarmu Untuk Mengerti Apa Itu Perjuangan.</p>
-                        <form action="#">
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div><!-- input-group -->
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <div class="input-group">
-                                        <a href="">
-                                            <img src="<?= base_url('assets/'); ?>tutorialcssjsadmin/images/unwira.png" class="img-thumbnail" height="" width="850px">
-                                            <p style="font-family:Times New Roman" class="text-center">Berita Tuberkolosis</p>
-                                        </a>
-                                    </div><!-- input-group -->
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

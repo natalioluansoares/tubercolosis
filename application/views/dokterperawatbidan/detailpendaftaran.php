@@ -49,9 +49,10 @@ kecamatan
                             <table class="table table-bordered table-striped" id="datatable">
                                 <thead class="table-primary">
                                     <tr>
-                                        <th>Kode Pasien</th>
+                                        <th>#</th>
+                                        <th>Nama Dokter</th>
                                         <th>Nama Pasien</th>
-                                        <th>No Eleitoral</th>
+                                        <th>Nomor KTP</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Umur</th>
                                         <th>ALamat</th>
@@ -59,10 +60,12 @@ kecamatan
                                         <th><i class="fa fa-gear (alias)"></i></th>
                                     </tr>
                                 </thead>
-                                <?php foreach ($details as $Dt) : ?>
+                                <?php $no = 1;
+                                foreach ($details as $Dt) : ?>
                                     <tbody>
                                         <tr>
-                                            <td><?= $Dt['kodepasien']; ?></td>
+                                            <td><?= $no++;  ?></td>
+                                            <td><?= $Dt['nama_dokter']; ?></td>
                                             <td><?= $Dt['namapasien']; ?></td>
                                             <td><?= $Dt['nomor_KTP']; ?></td>
                                             <td><?= $Dt['jenis_kelamin']; ?></td>
